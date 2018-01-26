@@ -1,0 +1,25 @@
+{
+	"name": "mrhewitt/silex-passwordgenerator",
+	"description": "Silex service provider for assisting with generation of secure passwords",
+	"type": "silex-service",
+	"version": "1.0",
+	"keywords": ["silex", "auth", "secure", "password"],
+	"homepage": "http://github.com/mrhewitt/silex-passwordgenerator",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mark Hewiit",
+			"homepage": "http://www.markhewitt.co.za",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.5.0",
+        "silex/silex": "~2.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"MarkHewitt\\SilexPasswords\\": "src"
+		}
+	},
+}
