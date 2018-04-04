@@ -18,13 +18,22 @@ class PasswordGeneratorService {
 	}
 	
 	public function validate($pwd) {
+		$errors = [];
 		if ( strlen($pwd) < 8 ) {
-			return "Must be at least 8 characters long";
+			$errors[] = "Must be at least 8 characters long";
 		} else {
-		
+			if ( !preg_match('/[a-z]/',$pwd) ) {
+				$errors[] = "Must have at least 1 lowercase letter";
+			} else if ( preg_match('/[A-Z]/',$pwd) ) {
+				$errors[] = "Must have at least 1 uppercase letter";
+			} else if ( preg_match('/\d/',$pwd) ) {
+				$errors[] = "Must have at least 1 digit";
+			} else if ( preg_match('/\W/',$pwd) ) {
+				$errors[] = "Must have at least 1 special character";
+			}
 		}
 
-		return true;
+		return count($errors) > 0 ? $errors : true;
 	}
 
     private function getRandomNumber()
