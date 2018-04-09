@@ -20,18 +20,20 @@ class PasswordGeneratorService {
 	public function validate($pwd) {
 		$errors = [];
 		if ( strlen($pwd) < 8 ) {
-			$errors[] = "Must be at least 8 characters long";
-		} else {
-			if ( !preg_match('/[a-z]/',$pwd) ) {
-				$errors[] = "Must have at least 1 lowercase letter";
-			} else if ( preg_match('/[A-Z]/',$pwd) ) {
-				$errors[] = "Must have at least 1 uppercase letter";
-			} else if ( preg_match('/\d/',$pwd) ) {
-				$errors[] = "Must have at least 1 digit";
-			} else if ( preg_match('/\W/',$pwd) ) {
-				$errors[] = "Must have at least 1 special character";
-			}
+			$errors['len'] = "Must be at least 8 characters long";
 		}
+        if ( !preg_match('/[a-z]/',$pwd) ) {
+            $errors['lower'] = "Must have at least 1 lowercase letter";
+        }
+        if ( !preg_match('/[A-Z]/',$pwd) ) {
+            $errors['upper'] = "Must have at least 1 uppercase letter";
+        }
+        if ( !preg_match('/\d/',$pwd) ) {
+            $errors['digit'] = "Must have at least 1 digit";
+        }
+        if ( !preg_match('/\W/',$pwd) ) {
+            $errors['spec'] = "Must have at least 1 special character";
+        }
 
 		return count($errors) > 0 ? $errors : true;
 	}
